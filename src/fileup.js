@@ -237,6 +237,17 @@
             errorSizeLimit: 'Arquivo "%fileName%" excede o limite (%sizeLimit%)',
             errorFileType: 'Arquivo "%fileName%" inválido',
             errorOldBrowser: 'Seu navegador não pode enviar os arquivos. Atualize para a versão mais recente'
+        },
+        es: {
+            upload: 'Subir',
+            abort: 'Cancelar',
+            remove: 'Eliminar',
+            complete: 'Cargado',
+            error: 'Error',
+            errorFilesLimit: 'El número de archivo selecccionados excede el límite (%filesLimit%)',
+            errorSizeLimit: 'El archivo "%fileName%" excede el limite de tamaño (%sizeLimit%)',
+            errorFileType: 'El archivo "%fileName%" es inválido',
+            errorOldBrowser: 'Tu navegador no puede subir archivos. Actualiza a la última versión'
         }
     };
 
