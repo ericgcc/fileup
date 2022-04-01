@@ -13,6 +13,7 @@
         method: 'post',
         timeout: null,
         autostart: false,
+        csrfToken: '',
         templateFile: '<div id="fileup-[INPUT_ID]-[FILE_NUM]" class="fileup-file [TYPE]">' +
             '<div class="fileup-preview">' +
             '<img src="[PREVIEW_SRC]" alt="[NAME]"/>' +
@@ -685,12 +686,14 @@
         xhr.setRequestHeader('Cache-Control',    'no-cache');
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
-
         events.callEvent(input, 'beforeStart', [xhr, file_number, file]);
 
         if (window.FormData !== undefined) {
             var formData = new FormData();
             formData.append(options.fieldName, file);
+            if(options.csrfToken){
+                formData.append("_token", options.csrfToken);
+            }
 
             if (Object.keys(options.extraFields).length) {
                 $.each(options.extraFields, function(name, value){
