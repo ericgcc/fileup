@@ -195,7 +195,7 @@
 
 
     var i18n = {
-         tr: {
+        tr: {
             upload: 'Yükle',
             abort: 'İptal Et',
             remove: 'Sil',
@@ -637,18 +637,18 @@
             xhr.timeout = options.timeout;
         }
 
-        // запрос начат
+        // Request started
         xhr.onloadstart = function() {
             fileContainer.status = 'loading';
             events.callEvent(input, 'start', [file_number, file]);
         };
 
-        // браузер получил очередной пакет данных
+        // The browser received another data packet
         xhr.upload.onprogress = function(ProgressEvent) {
             events.callEvent(input, 'progress', [file_number, ProgressEvent, file]);
         };
 
-        // запрос был успешно (без ошибок) завершён
+        // The request was successfully (without errors) completed
         xhr.onload = function() {
             fileContainer.status = 'loaded';
 
@@ -659,24 +659,24 @@
             }
         };
 
-        // запрос был завершён (успешно или неуспешно)
+        // The request was completed (successfully or unsuccessfully)
         xhr.onloadend = function() {
             events.callEvent(input, 'finish', [file_number, file]);
         };
 
-        // запрос был отменён вызовом xhr.abort()
+        // The request was canceled by calling xhr.abort()
         xhr.onabort = function() {
             fileContainer.status = 'stand_by';
             events.callEvent(input, 'abort', [file_number, file]);
         };
 
-        // запрос был прекращён по таймауту
+        // The request was terminated by a timeout
         xhr.ontimeout = function() {
             fileContainer.status = 'stand_by';
             events.callEvent(input, 'timeout', [file_number, file]);
         };
 
-        // произошла ошибка
+        // There was an error
         xhr.onerror = function(event) {
             fileContainer.status = 'stand_by';
             events.callEvent(input, 'error', ['error_load', file, file_number, event]);
@@ -714,7 +714,7 @@
     var methods = {
 
         /**
-         * Добавление нового файла в очередь загрузки
+         * Adding a new file to the download queue
          * @param inputID
          * @param file
          */
@@ -724,7 +724,7 @@
 
 
         /**
-         * Загрузка файла или всех файлов
+         * Downloading a file or all files
          * @param inputID
          * @param file_number
          */
@@ -747,7 +747,7 @@
 
 
         /**
-         * Удаление файла или всех файлов
+         * Deleting a file or all files
          * @param inputID
          * @param file_number
          */
@@ -783,7 +783,7 @@
 
 
         /**
-         * Удаление всех событий
+         * Deleting all events
          * @param inputID
          * @param name
          */
@@ -797,7 +797,7 @@
 
 
         /**
-         * Отмена загрузки
+         * Cancel Download
          * @param inputID
          * @param file_number
          */
@@ -825,7 +825,7 @@
      * @returns {object}
      */
     $.fileup = function(param1, param2, param3) {
-        // Инициализация
+        // Initializing
         if ( typeof param1 === 'object' ) {
             init(param1);
 
@@ -835,14 +835,14 @@
                 return eventRegister;
             }
 
-        // Выполнение метода
+            // Implementing the method
         } else if ( typeof param1 === 'string' &&
             typeof param2 === 'string' &&
             typeof methods[param2] == 'function'
         ) {
             methods[param2](param1, param3);
 
-        // Получение списка событий для добавления своего
+            // Getting a list of events to add your own
         } else if ( typeof param1 === 'string' &&
             typeof param2 === 'undefined' &&
             typeof param3 === 'undefined'
